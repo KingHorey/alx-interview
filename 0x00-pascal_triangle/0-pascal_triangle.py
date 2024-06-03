@@ -5,14 +5,14 @@
 
 def pascal_triangle(n):
     """ function to get pascals triangle using recursion"""
+    data = []
     if n <= 0 or type(n) is not int:
         return []
     elif n == 1:
-        return [1]
+        return [[1]]
     elif n == 2:
-        return [1, 1]
+        return [[1], [1, 1]]
     else:
-        data = []
         i = 1
         while i <= n:
             if i <= 2:
