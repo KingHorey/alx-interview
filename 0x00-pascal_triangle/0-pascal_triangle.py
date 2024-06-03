@@ -1,5 +1,8 @@
 #!/usr/bin/python3
 
+""" function to get pascals triangle using recursion """
+
+
 def pascal_triangle(n):
     """ function to get pascals triangle using recursion"""
     if n <= 0 or type(n) is not int:
