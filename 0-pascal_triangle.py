@@ -1,4 +1,7 @@
+#!/usr/bin/python3
+
 def pascal_triangle(n):
+    """ function to get pascals triangle using recursion"""
     if n <= 0 or type(n) is not int:
         return []
     elif n == 1:
@@ -19,6 +22,7 @@ def pascal_triangle(n):
 
 
 def my_function(data, count):
+    """ sub function to get the pascal triangle when count is greater than 2"""
     new_list = []
     i = 0
     while i < count:
