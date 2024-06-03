@@ -10,16 +10,14 @@ def pascal_triangle(n):
         return []
     elif n == 1:
         return [[1]]
-    elif n == 2:
-        return [[1], [1, 1]]
     else:
         i = 1
         while i <= n:
-            if i <= 2:
+            if i <= 1:
                 result = pascal_triangle(i)
             else:
                 result = my_function(result, i)
-            data.append(result)
+            data.extend(result)
             i += 1
     return data
 
@@ -27,11 +25,14 @@ def pascal_triangle(n):
 def my_function(data, count):
     """ sub function to get the pascal triangle when count is greater than 2"""
     new_list = []
+    initial_list = []
     i = 0
+    length = len(data) - 1
     while i < count:
         if (i == 0 or i == count - 1):
             new_list.append(1)
         else:
-            new_list.append(data[i] + data[i - 1])
+            new_list.append(data[length][i] + data[length][i - 1])
         i += 1
-    return new_list
+    initial_list.append(new_list)
+    return initial_list
