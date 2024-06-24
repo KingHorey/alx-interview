@@ -43,7 +43,7 @@ for i in range(input_size):
     rounds += 1
     """ check with regex if the input matches pattern """
     regex_check = re.match(r'(.*?).?-.?\[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{'
-                           r'2}.\d{6}] .*? (\d*?) (\d*)?', sys_input)
+                           r'2}.\d{6}] .*? ([\\d\w]*?) (\d*)?', sys_input)
     if regex_check:
         """ if the input matches the pattern, extract the status code
         and the file size """
@@ -67,7 +67,11 @@ for i in range(input_size):
             else:
                 continue
         except ValueError:
-            continue
+            try:
+                new_size = int(size)
+                file_size += new_size
+            except ValueError:
+                continue
     if lines_count == 10:
         print_result(status_codes)
         lines_count = 0
