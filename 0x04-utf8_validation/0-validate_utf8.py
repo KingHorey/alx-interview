@@ -12,7 +12,8 @@ def validUTF8(data):
         if data[index] > 255 or data[index] < 0:
             return False
         if data[index] >> 7 == 0b0:
-            count = 1
+            # count = 1
+            return True
         elif data[index] >> 5 == 0b110:
             count = 2
         elif data[index] >> 4 == 0b1110:
@@ -23,7 +24,7 @@ def validUTF8(data):
             return False
 
         for _ in range(1, count):
-            if index >= count and data[index + _] >> 6 != 0b10:
+            if data[index + _] >> 6 != 0b10:
                 return False
         index += count
     return True
