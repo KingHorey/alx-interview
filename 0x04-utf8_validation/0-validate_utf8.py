@@ -1,5 +1,4 @@
-#!/usr/bin/env python
-
+#!/usr/bin/python3
 """ import annotation assistants """
 from typing import List
 
