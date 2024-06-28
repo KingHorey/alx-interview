@@ -21,9 +21,9 @@ def validUTF8(data):
             count = 4
         else:
             return False
-        index += 1
-        for _ in range(index, count):
-            if index >= count and data[index] >> 6 != 0b10:
+
+        for _ in range(1, count):
+            if index >= count and data[index + _] >> 6 != 0b10:
                 return False
-            index += 1
+        index += count
     return True
