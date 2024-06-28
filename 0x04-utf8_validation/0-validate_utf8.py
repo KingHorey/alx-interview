@@ -11,8 +11,9 @@ def validUTF8(data):
     while index < len(data):  # in the case of nested lists
         if data[index] < 0:
             return False
-        if data[index] >> 7 == 0b0:
-            return True
+        if data[index] & 0b10000000 == 0b00000000:
+            index += 1
+            continue
         elif data[index] & 0b11100000 == 0b11000000:
             count = 2
         elif data[index] & 0b11110000 == 0b11100000:
@@ -24,7 +25,7 @@ def validUTF8(data):
 
         # index += 1
         for _ in range(1, count):
-            if _ >= len(data) or data[_] & 0b11000000 != 0b10000000:
+            if _ >= len(data) or data[_ + index] & 0b11000000 != 0b10000000:
                 return False
         index += count
     return True
