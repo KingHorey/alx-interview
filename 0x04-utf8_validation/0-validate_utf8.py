@@ -1,7 +1,10 @@
 #!/usr/bin/python
 
+""" no modules imported """
+
 
 def validUTF8(data):
+    """ validate utf-8 sequence """
     if not isinstance(data, list):
         return False
     index = 0
