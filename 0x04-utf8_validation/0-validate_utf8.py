@@ -9,7 +9,7 @@ def validUTF8(data):
         return False
     index = 0
     while index < len(data):  # in the case of nested lists
-        if data[index] > 255 or data[index] < 0 or data[index] > 127:
+        if data[index] > 255 or data[index] < 0:
             return False
         if data[index] >> 7 == 0b0:
             count = 1
@@ -23,7 +23,7 @@ def validUTF8(data):
             return False
         index += 1
         for _ in range(index, count):
-            if index >= len(data) or data[index] >> 6 != 0b10:
+            if index >= count and data[index] >> 6 != 0b10:
                 return False
             index += 1
     return True
