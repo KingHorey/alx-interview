@@ -10,7 +10,7 @@ def validUTF8(data):
     index = 0
     count = 0
     while index < len(data):  # in the case of nested lists
-        if data[index] > 255:
+        if data[index] > 255 or data[index] < 0:
             return False
         if data[index] >> 7 == 0b0:
             count = 1
