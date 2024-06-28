@@ -13,11 +13,11 @@ def validUTF8(data):
             return False
         if data[index] >> 7 == 0b0:
             return True
-        elif data[index] & 0b11 == 0b110:
+        elif data[index] & 0b11100000 == 0b11000000:
             count = 2
-        elif data[index] & 0b111 == 0b111:
+        elif data[index] & 0b11110000 == 0b11100000:
             count = 3
-        elif data[index] & 0b1111 == 0b11110:
+        elif data[index] & 0b11111000 == 0b11110000:
             count = 4
         else:
             return False
@@ -28,7 +28,3 @@ def validUTF8(data):
                 return False
         index += count
     return True
-
-
-# data = [467, 133, 108]
-# print(validUTF8(data))
