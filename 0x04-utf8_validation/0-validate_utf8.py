@@ -23,9 +23,14 @@ def validUTF8(data):
         else:
             return False
 
+        # check if there are sufficient bits to look for in the array
+
         # index += 1
         for _ in range(1, count):
-            if _ >= len(data) or data[_ + index] & 0b11000000 != 0b10000000:
+            try:
+                if _ >= len(data) or data[_ + index] & 0b11000000 != 0b10000000:
+                    return False
+            except IndexError:
                 return False
         index += count
     return True
