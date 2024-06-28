@@ -1,16 +1,15 @@
 #!/usr/bin/python3
 
-""" import typing module """
-from typing import List
+""" no modules imported """
 
 
-def validUTF8(data: List) -> bool:
+def validUTF8(data):
     """ validate utf-8 sequence """
     if not isinstance(data, list):
         return False
-    index: int = 0
+    index = 0
     while index < len(data):  # in the case of nested lists
-        if data[index] > 255 or data[index] < 0:
+        if data[index] > 255 or data[index] < 0 or data[index] > 127:
             return False
         if data[index] >> 7 == 0b0:
             count = 1
