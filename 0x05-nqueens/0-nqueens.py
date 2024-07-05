@@ -16,6 +16,8 @@ followed by a new line, and exit with the status 1
 The program should print every possible solution to the problem
 One solution per line
 Format: see example
+You don't have to print the solutions in a specific order
+You are only allowed to import the sys module
 """
 
 import sys
@@ -23,22 +25,22 @@ import sys
 
 def create_positions(n: int) -> list:
     """returns a list of possible positions"""
-    possibles = []
+    posible = []
     for i in range(n):
         for j in range(n):
-            possibles.append([i, j])
-    return possibles
+            posible.append([i, j])
+    return posible
 
 
-def cancel_VH(complete_list: list, post: list):
+def cancel_VH(full_list: list, post: list):
     """
     returns a new list with vertical and diagonal
     position canceled out
     """
     new_list = []
-    for values in complete_list:
-        if values[0] != post[0] and values[1] != post[1]:
-            new_list.append(values)
+    for each in full_list:
+        if each[0] != post[0] and each[1] != post[1]:
+            new_list.append(each)
     return new_list
 
 
@@ -49,14 +51,14 @@ def cancel_diag(full_list: list, post: list) -> list:
     """
     new_list = []
     list2 = []
-    for elements in full_list:
-        diff = post[0] - elements[0]
-        if post[1] - diff != elements[1]:
-            new_list.append(elements)
-    for elements in new_list:
-        diff = post[0] - elements[0]
-        if post[1] + diff != elements[1]:
-            list2.append(elements)
+    for each in full_list:
+        diff = post[0] - each[0]
+        if post[1] - diff != each[1]:
+            new_list.append(each)
+    for each in new_list:
+        diff = post[0] - each[0]
+        if post[1] + diff != each[1]:
+            list2.append(each)
     return list2
 
 
@@ -70,10 +72,10 @@ def remove_invalid(lst: list, pos: list):
 def visual(pos, num):
     """prints postion in a visible manner"""
     z = 0
-    for indexes in range(num):
+    for x in range(num):
         for y in range(num):
             try:
-                if indexes == pos[z][0] and y == pos[z][1]:
+                if x == pos[z][0] and y == pos[z][1]:
                     print(f"{pos[z]} ", end="")
                     z += 1
                 else:
@@ -90,12 +92,12 @@ def arrange_queens(possible: list, num: int):
     trash = possible.copy()
     for y in range(num):
         sub_list = []
-        for elements in range(num):
-            print(f"chcking out {[elements, y]} in {trash}")
-            if [elements, y] in trash:
-                print(f"found {[elements, y]}")
-                sub_list.append([elements, y])
-                trash = remove_invalid(trash, [elements, y])
+        for x in range(num):
+            print(f"chcking out {[x, y]} in {trash}")
+            if [x, y] in trash:
+                print(f"found {[x, y]}")
+                sub_list.append([x, y])
+                trash = remove_invalid(trash, [x, y])
                 visual(trash, num)
         grand_list.append(sub_list)
     return grand_list
