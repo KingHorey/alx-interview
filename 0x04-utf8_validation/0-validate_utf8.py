@@ -28,7 +28,8 @@ def validUTF8(data):
         # index += 1
         for _ in range(1, count):
             try:
-                if (_ >= len(data) or data[_ + index] & 0b11000000 !=
+                if (_ >= len(data) or data[_ + index] & 0b11000000 !=:
+
                         0b10000000):
                     return False
             except IndexError:
